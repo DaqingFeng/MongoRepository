@@ -9,7 +9,7 @@
 4. The sample like .
   
       
-            
+ ```c#
             EventStoreRepository store = new EventStoreRepository();
             EventHistory eventhis = new EventHistory();
             eventhis.ID = Guid.NewGuid().ToString();
@@ -34,4 +34,5 @@
            long deleteCount=  store.Delete(updatehis);
 
             //Get deleted
-            EventHistory deletedeventhis = store.QueryMaxEventHistoryByID(eventhis.ID).Result;
+          EventHistory deletedeventhis = store.QueryMaxEventHistoryByID(eventhis.ID).Result;
+```
