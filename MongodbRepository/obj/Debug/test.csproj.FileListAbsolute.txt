@@ -1,0 +1,1 @@
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\test.exe.config
