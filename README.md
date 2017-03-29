@@ -17,7 +17,8 @@
 
         public EventStoreRepository()
         {
-            Repository = new MongoRepository<test.EventHistory>(MongoUtil<string>.GetDefaultConnectionString(),MongoDbMap.SerialEvents);
+            Repository = new MongoRepository<test.EventHistory>(MongoUtil<string>
+            .GetDefaultConnectionString(),MongoDbMap.SerialEvents);
         }
 
         public void SaveEvent(EventHistory @event)
