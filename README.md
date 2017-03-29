@@ -10,29 +10,40 @@
   
       
  ```c#
-            EventStoreRepository store = new EventStoreRepository();
-            EventHistory eventhis = new EventHistory();
-            eventhis.ID = Guid.NewGuid().ToString();
-            eventhis.Content = "Demo";
-            eventhis.Version = 1;
+         
+   public class EventStoreRepository
+      {
+        IMongoRepository<EventHistory> Repository;
 
-            //Save
-            store.SaveEvent(eventhis);
+        public EventStoreRepository()
+        {
+            Repository = new MongoRepository<test.EventHistory>(MongoUtil<string>.GetDefaultConnectionString(),MongoDbMap.SerialEvents);
+        }
 
-            //Get
-            EventHistory goteventhis = store.QueryMaxEventHistoryByID(eventhis.ID).Result;
+        public void SaveEvent(EventHistory @event)
+        {
+            Repository.Add(@event);
+        }
 
-            EventHistory updatehis = new EventHistory();
-            updatehis.Id = goteventhis.Id;
-            updatehis.ID = goteventhis.ID;
-            updatehis.Content = "Updated Demo";
-            updatehis.Version = 2;
+        public long Update(EventHistory @event, EventHistory target)
+        {
+            return Repository.Update(@event, target).ModifiedCount;
+        }
 
-            //Update
-           long updated= store.Update(goteventhis, updatehis);
+        public async Task<List<EventHistory>> QueryEventHistoryByID(string ID)
+        {
+            return await Repository.Collection.Find(i => i.ID == ID).ToListAsync();
+        }
 
-           long deleteCount=  store.Delete(updatehis);
+        public async Task<EventHistory> QueryMaxEventHistoryByID(string ID)
+        {
+            var eventhist = await Repository.Collection.Find(item => item.ID == ID).ToListAsync();
+            return eventhist.OrderBy(item => item.Version).LastOrDefault();
+        }
 
-            //Get deleted
-          EventHistory deletedeventhis = store.QueryMaxEventHistoryByID(eventhis.ID).Result;
+        public long Delete(EventHistory t)
+        {
+            return Repository.Delete((i) => i.Version == t.Version && i.ID == t.ID);
+        }
+    }
 ```
