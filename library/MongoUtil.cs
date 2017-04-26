@@ -8,6 +8,8 @@ namespace library
     using MongoDB.Driver;
     using System;
     using System.Collections;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Configuration;
 
     /// <summary>
@@ -16,9 +18,14 @@ namespace library
     public static class MongoUtil<U>
     {
         /// <summary>
+        /// Cache The mongo types
+        /// </summary>
+        private static IDictionary<Type, string> collectionCache = new ConcurrentDictionary<Type, string>();
+
+        /// <summary>
         /// The default key MongoRepository will look for in the App.config or Web.config file.
         /// </summary>
-        private const string DefaultConnectionstringName = "MongoServerSettings";
+        private const string DefaultConnectionstringName = "MongoUri";
 
         /// <summary>
         /// Retrieves the default connectionstring from the App.config or Web.config file.
@@ -100,6 +107,11 @@ namespace library
         private static string GetCollectionName<T>() where T : IMongoEntity<U>
         {
             string collectionName;
+            Type type = typeof(T);
+            if (collectionCache.ContainsKey(type))
+            {
+                return collectionCache[type];
+            }
             if (typeof(T).BaseType.Equals(typeof(object)))
             {
                 collectionName = GetCollectioNameFromInterface<T>();
@@ -108,12 +120,12 @@ namespace library
             {
                 collectionName = GetCollectionNameFromType(typeof(T));
             }
-
             if (string.IsNullOrEmpty(collectionName))
             {
                 throw new ArgumentException("Collection name cannot be empty for this entity");
             }
-            return collectionName;
+            collectionCache.Add(type, collectionName);
+            return collectionCache[type]; ;
         }
 
         /// <summary>
