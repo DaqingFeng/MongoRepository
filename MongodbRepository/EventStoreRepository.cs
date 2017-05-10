@@ -28,12 +28,12 @@ namespace test
             return Repository.Update(@event, target).ModifiedCount;
         }
 
-        public async Task<List<EventHistory>> QueryEventHistoryByID(string ID)
+        public async Task<List<EventHistory>> QueryEventHistoryByID(Guid ID)
         {
             return await Repository.Collection.Find(i => i.ID == ID).ToListAsync();
         }
 
-        public async Task<EventHistory> QueryMaxEventHistoryByID(string ID)
+        public async Task<EventHistory> QueryMaxEventHistoryByID(Guid ID)
         {
             var eventhist = await Repository.Collection.Find(item => item.ID == ID).ToListAsync();
             return eventhist.OrderBy(item => item.Version).LastOrDefault();

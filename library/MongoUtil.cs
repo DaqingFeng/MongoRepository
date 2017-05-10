@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace library
 {
+    using MongoDB.Bson;
     using MongoDB.Driver;
     using System;
     using System.Collections;
@@ -20,7 +21,7 @@ namespace library
         /// <summary>
         /// Cache The mongo types
         /// </summary>
-        private static IDictionary<Type, string> collectionCache = new ConcurrentDictionary<Type, string>();
+        private static ConcurrentDictionary<Type, string> collectionCache = new ConcurrentDictionary<Type, string>();
 
         /// <summary>
         /// The default key MongoRepository will look for in the App.config or Web.config file.
@@ -33,7 +34,7 @@ namespace library
         /// <returns>Returns the default connectionstring from the App.config or Web.config file.</returns>
         public static string GetDefaultConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings[DefaultConnectionstringName].ConnectionString;
+            return ConfigurationManager.AppSettings[DefaultConnectionstringName];
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace library
         private static IMongoDatabase GetDatabaseFromUrl(MongoUrl url)
         {
             var client = new MongoClient(url);
-            return client.GetDatabase(url.DatabaseName); // WriteConcern defaulted to Acknowledged
+            return client.GetDatabase(url.DatabaseName, new MongoDatabaseSettings() { GuidRepresentation = GuidRepresentation.Standard }); // WriteConcern defaulted to Acknowledged
         }
 
         /// <summary>
@@ -58,6 +59,8 @@ namespace library
         {
             return MongoUtil<U>.GetCollectionFromConnectionString<T>(connectionString, GetCollectionName<T>());
         }
+
+
 
         /// <summary>
         /// Creates and returns a MongoCollection from the specified type and connectionstring.
@@ -106,26 +109,28 @@ namespace library
         /// <returns>Returns the collectionname for T.</returns>
         private static string GetCollectionName<T>() where T : IMongoEntity<U>
         {
-            string collectionName;
             Type type = typeof(T);
-            if (collectionCache.ContainsKey(type))
-            {
-                return collectionCache[type];
-            }
-            if (typeof(T).BaseType.Equals(typeof(object)))
-            {
-                collectionName = GetCollectioNameFromInterface<T>();
-            }
-            else
-            {
-                collectionName = GetCollectionNameFromType(typeof(T));
-            }
-            if (string.IsNullOrEmpty(collectionName))
-            {
-                throw new ArgumentException("Collection name cannot be empty for this entity");
-            }
-            collectionCache.Add(type, collectionName);
-            return collectionCache[type]; ;
+            return collectionCache.GetOrAdd(type, typekeys =>
+              {
+                  string collectionName;
+                  if (collectionCache.ContainsKey(type))
+                  {
+                      return collectionCache[type];
+                  }
+                  if (typeof(T).BaseType.Equals(typeof(object)))
+                  {
+                      collectionName = GetCollectioNameFromInterface<T>();
+                  }
+                  else
+                  {
+                      collectionName = GetCollectionNameFromType(typeof(T));
+                  }
+                  if (string.IsNullOrEmpty(collectionName))
+                  {
+                      throw new ArgumentException("Collection name cannot be empty for this entity");
+                  }
+                  return collectionName;
+              });
         }
 
         /// <summary>

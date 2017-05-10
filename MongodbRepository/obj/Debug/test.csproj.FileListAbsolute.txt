@@ -1,1 +1,17 @@
 D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\test.exe.config
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\test.exe
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\test.pdb
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\library.dll
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Bson.dll
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Driver.Core.dll
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Driver.dll
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\library.pdb
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Bson.xml
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Driver.xml
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Driver.Core.xml
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\obj\Debug\test.csprojResolveAssemblyReference.cache
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\obj\Debug\test.exe
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\obj\Debug\test.pdb
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Driver.Legacy.dll
+D:\NetPro\MongodbRepository\MongodbRepository\MongodbRepository\bin\Debug\MongoDB.Driver.Legacy.xml

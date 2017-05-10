@@ -47,7 +47,6 @@ namespace library
         public MongoRepository(string connectionString)
         {
             this.collection = MongoUtil<TKey>.GetCollectionFromConnectionString<T>(connectionString);
-
         }
 
 
@@ -93,6 +92,7 @@ namespace library
         {
             get { return this.collection; }
         }
+
 
         /// <summary>
         /// Gets the name of the collection

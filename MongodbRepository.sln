@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "MongodbRepository\test.csproj", "{1A2E9F3A-636F-42D0-A7B1-F6FBAFCD951C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library", "library\library.csproj", "{BB60DECA-1334-4153-B095-9394E3362AFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testTests", "testTests\testTests.csproj", "{23918F00-0F8C-4BE2-837A-42B25AC41080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A2E9F3A-636F-42D0-A7B1-F6FBAFCD951C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A2E9F3A-636F-42D0-A7B1-F6FBAFCD951C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A2E9F3A-636F-42D0-A7B1-F6FBAFCD951C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A2E9F3A-636F-42D0-A7B1-F6FBAFCD951C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB60DECA-1334-4153-B095-9394E3362AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB60DECA-1334-4153-B095-9394E3362AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB60DECA-1334-4153-B095-9394E3362AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB60DECA-1334-4153-B095-9394E3362AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23918F00-0F8C-4BE2-837A-42B25AC41080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23918F00-0F8C-4BE2-837A-42B25AC41080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23918F00-0F8C-4BE2-837A-42B25AC41080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23918F00-0F8C-4BE2-837A-42B25AC41080}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

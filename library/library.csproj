@@ -55,8 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
@@ -70,10 +70,13 @@
   <ItemGroup>
     <Compile Include="CollectionName.cs" />
     <Compile Include="IMongoEntity.cs" />
+    <Compile Include="IMongoOldRepository.cs" />
     <Compile Include="IMongoRepository.cs" />
     <Compile Include="MongoEntity.cs" />
+    <Compile Include="MongoOldRepository.cs" />
     <Compile Include="MongoRepository.cs" />
     <Compile Include="MongoUtil.cs" />
+    <Compile Include="MongoUtilOld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
