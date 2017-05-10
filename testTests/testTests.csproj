@@ -75,6 +75,7 @@
     <Compile Include="EventStoreRepository.cs" />
     <Compile Include="MongoDbMap.cs" />
     <Compile Include="ProductEntity.cs" />
+    <Compile Include="ProductQueryEntity.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

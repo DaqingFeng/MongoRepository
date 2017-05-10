@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using testTests;
 
 namespace test
 {
@@ -40,9 +41,9 @@ namespace test
         }
 
 
-        public List<ProductEntity> QueryEventHistoryByID(String WareHouse, Guid ID)
+        public List<ProductQueryEntity> QueryEventHistoryByID(String WareHouse, Guid ID)
         {
-            MongoNormalOldRepository<ProductEntity> repository = new MongoNormalOldRepository<ProductEntity>();
+            MongoNormalOldRepository<ProductQueryEntity> repository = new MongoNormalOldRepository<ProductQueryEntity>();
             List<IMongoQuery> queryandlist = new List<IMongoQuery>();
 
             if (WareHouse != null)
@@ -51,13 +52,13 @@ namespace test
             }
             if (ID != null)
             {
-                queryandlist.Add(Query<ProductEntity>.EQ<Guid>(u => u.ProductId, ID));
+                queryandlist.Add(Query<ProductQueryEntity>.EQ<Guid>(u => u.ProductId, ID));
             }
-            var itemFromDb = repository.Collection.FindOneAs<ProductEntity>(Query.EQ("ProductId", ID));
+            var itemFromDb = repository.Collection.FindOneAs<ProductQueryEntity>(Query.EQ("ProductId", ID));
 
-            List<ProductEntity> productlist = new List<ProductEntity>();
+            List<ProductQueryEntity> productlist = new List<ProductQueryEntity>();
             var query = Query.And(queryandlist);
-            var cursor = repository.Collection.FindAs<ProductEntity>(query);
+            var cursor = repository.Collection.FindAs<ProductQueryEntity>(query);
             cursor.SetSortOrder(SortBy.Ascending("CreateTime"));
             cursor.SetSkip(0); //pageindex*pagesize
             cursor.SetLimit(10); //pagesize

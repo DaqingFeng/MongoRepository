@@ -22,7 +22,7 @@ namespace test.Tests
             eventhis.Version = 1;
 
             //Save
-            store.SaveEvent(eventhis);
+            //store.SaveEvent(eventhis);
 
             //Get
             EventHistory goteventhis = store.QueryMaxEventHistoryByID(eventhis.ID).Result;
@@ -47,11 +47,11 @@ namespace test.Tests
             product.ProductId = Guid.Parse("06d3ae6a-8b7a-4688-814f-571d3369ea65");
 
             product.ProductName = "上海仓";
-            productrepository.SaveEvent(product);
+           //productrepository.SaveEvent(product);
 
             var newrst = productrepository.QueryByFilter(0, 10, p => p.ProductId == product.ProductId).Result;
 
-          //   productrepository.SaveProduct(product);
+           // productrepository.SaveProduct(product);
 
             var rst = productrepository.QueryEventHistoryByID("上海", product.ProductId);
 
