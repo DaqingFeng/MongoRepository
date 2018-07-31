@@ -1,0 +1,20 @@
+```
+db.getCollection('CommodityInventoryLog').find({
+Rec_CreateTime:{$gte:ISODate("2018-07-30T21:00:19.033+08:00")},
+$where: function() {
+     var rst=false;
+     if(this.IsCanlendar==false)
+     {
+     if( this.CurrentQuantity > this.CurrentRedisQuantity)
+     {
+        rst=true;
+     }
+     else if( this.CurrentQuantity < this.CurrentRedisQuantity)
+     {
+         rst=true;
+     }    
+    }
+    return rst;
+  }
+});
+```
